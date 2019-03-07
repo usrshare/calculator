@@ -144,10 +144,10 @@ void boolnum( PNUMBER *pa, PNUMBER b, int func )
     MANTTYPE db;
 
     a=*pa;
-    cdigits = max( a->cdigit+a->exp, b->cdigit+b->exp ) -
-            min( a->exp, b->exp );
+    cdigits = std::max( a->cdigit+a->exp, b->cdigit+b->exp ) -
+            std::min( a->exp, b->exp );
     createnum( c, cdigits );
-    c->exp = min( a->exp, b->exp );
+    c->exp = std::min( a->exp, b->exp );
     mexp = c->exp;
     c->cdigit = cdigits;
     pcha = a->mant;

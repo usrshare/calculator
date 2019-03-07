@@ -218,7 +218,7 @@ void _divnumx( PNUMBER *pa, PNUMBER b, int32_t precision);
 //
 //----------------------------------------------------------------------------
 
-void __inline divnumx( PNUMBER *pa, PNUMBER b, int32_t precision)
+void /*__inline*/ divnumx( PNUMBER *pa, PNUMBER b, int32_t precision)
 
 {
     if ( b->cdigit > 1 || b->mant[0] != 1 || b->exp != 0 )

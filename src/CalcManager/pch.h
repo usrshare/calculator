@@ -8,8 +8,8 @@
 #endif
 
 #include <assert.h>
-#include <windows.h>
-#include <winerror.h>
+//#include <windows.h>
+//#include <winerror.h>
 #include <sstream>
 #include <iostream>
 #include <string>
@@ -18,6 +18,6 @@
 #include <limits>
 #include <regex>
 #include <unordered_map>
-#include <intsafe.h>
+//#include <intsafe.h>
 #include <array>
-#include <ppltasks.h>
+//#include <ppltasks.h>

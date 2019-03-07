@@ -20,6 +20,7 @@
 #include "pch.h"
 #include "ratpak.h"
 
+#include <list>
 using namespace std;
 
 //----------------------------------------------------------------------------
@@ -194,7 +195,7 @@ void _addnum( PNUMBER *pa, PNUMBER b, uint32_t radix)
 
 void _mulnum( PNUMBER *pa, PNUMBER b, uint32_t radix);
 
-void __inline mulnum( PNUMBER *pa, PNUMBER b, uint32_t radix)
+void /*__inline*/ mulnum( PNUMBER *pa, PNUMBER b, uint32_t radix)
 
 {
     if ( b->cdigit > 1 || b->mant[0] != 1 || b->exp != 0 )
@@ -377,7 +378,7 @@ void remnum( PNUMBER *pa, PNUMBER b, uint32_t radix)
 
 void _divnum( PNUMBER *pa, PNUMBER b, uint32_t radix, int32_t precision);
 
-void __inline divnum( PNUMBER *pa, PNUMBER b, uint32_t radix, int32_t precision)
+void /*__inline*/ divnum( PNUMBER *pa, PNUMBER b, uint32_t radix, int32_t precision)
 
 {
     if ( b->cdigit > 1 || b->mant[0] != 1 || b->exp != 0 )

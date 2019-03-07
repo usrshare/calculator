@@ -25,7 +25,7 @@ static constexpr uint32_t BASEX = 0x80000000; // Internal radix used in calculat
                         // overflow detection esp. in mul
 
 typedef unsigned long MANTTYPE;
-typedef unsigned __int64 TWO_MANTTYPE;
+typedef uint64_t TWO_MANTTYPE;
 
 enum eNUMOBJ_FMT {
     FMT_FLOAT,        // returns floating point, or exponential if number is too big
@@ -50,8 +50,8 @@ typedef enum eANGLE_TYPE ANGLE_TYPE;
 //
 //-----------------------------------------------------------------------------
 
-#pragma warning(push)
-#pragma warning(disable:4200)   // nonstandard extension used : zero-sized array in struct/union
+//#pragma warning(push)
+//#pragma warning(disable:4200)   // nonstandard extension used : zero-sized array in struct/union
 typedef struct _number
 {
     long sign;        // The sign of the mantissa, +1, or -1
@@ -63,7 +63,7 @@ typedef struct _number
                     // This is actually allocated as a continuation of the
                     // NUMBER structure.
 } NUMBER, *PNUMBER, **PPNUMBER;
-#pragma warning(pop)
+//#pragma warning(pop)
 
 
 //-----------------------------------------------------------------------------
@@ -225,7 +225,7 @@ memmove( (x)->pp->mant, &((x)->pp->mant[trim]), sizeof(MANTTYPE)*((x)->pp->cdigi
                 (x)->pp->cdigit -= trim; \
                 (x)->pp->exp += trim; \
                 } \
-            trim = min((x)->pp->exp,(x)->pq->exp);\
+            trim = std::min((x)->pp->exp,(x)->pq->exp);\
             (x)->pp->exp -= trim;\
             (x)->pq->exp -= trim;\
             }
