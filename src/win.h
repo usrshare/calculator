@@ -21,6 +21,8 @@
 
 #define SCODE_CODE(sc) ((sc) & 0xFFFF)
 
+#define sealed
+
 typedef unsigned char BYTE;
 typedef unsigned short WORD;
 typedef int INT;

@@ -1,0 +1,496 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cpp}
+decl {\#include "Command.h"} {private global
+}
+
+decl {\#include "ui_callbacks.h"} {private global
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window calcwin {
+    label Calculator open
+    xywh {320 200 215 285} type Double labelfont 4 labelsize 1420 visible
+  } {
+    Fl_Menu_Bar {} {open
+      xywh {0 0 480 20} labelsize 12
+    } {
+      Submenu {} {
+        label {&Mode} open
+        xywh {0 0 70 21} labelsize 12
+      } {
+        MenuItem {} {
+          label {&Basic}
+          callback {CalcUISendCommand(CalculationManager::Command::ModeBasic);
+CalcUISwitchMode(CM_BASIC);}
+          xywh {0 0 34 21} shortcut 0x80031
+        }
+        MenuItem {} {
+          label {&Scientific}
+          callback {CalcUISendCommand(CalculationManager::Command::ModeScientific);
+CalcUISwitchMode(CM_SCIENTIFIC);}
+          xywh {0 0 34 21} shortcut 0x80032
+        }
+        MenuItem {} {
+          label {&Programmer}
+          callback {CalcUISendCommand(CalculationManager::Command::ModeProgrammer);
+CalcUISwitchMode(CM_PROGRAMMER);}
+          xywh {0 0 34 21} shortcut 0x80033
+        }
+      }
+      Submenu {} {
+        label {&Edit} open
+        xywh {10 10 70 21} labelsize 12
+      } {}
+      Submenu {} {
+        label {&Options} open
+        xywh {20 20 70 21} labelsize 12
+      } {}
+      Submenu {} {
+        label {&Help} open
+        xywh {30 30 70 21} labelsize 12
+      } {}
+    }
+    Fl_Group general_grp {open
+      xywh {10 88 195 188}
+    } {
+      Fl_Button {} {
+        label {←}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandBACK);}
+        xywh {10 120 35 28} shortcut 0xff08 labelfont 8 labelsize 20
+      }
+      Fl_Button {} {
+        label CE
+        callback {CalcUISendCommand(CalculationManager::Command::CommandCENTR);}
+        xywh {50 120 35 28} shortcut 0xffff labelsize 12
+      }
+      Fl_Button {} {
+        label C
+        callback {CalcUISendCommand(CalculationManager::Command::CommandCLEAR);}
+        xywh {90 120 35 28} shortcut 0xff1b labelsize 12
+      }
+      Fl_Button {} {
+        label 0
+        callback {CalcUISendCommand(CalculationManager::Command::Command0);}
+        xywh {10 248 75 28} shortcut 0x30 labelsize 15
+      }
+      Fl_Button {} {
+        label 1
+        callback {CalcUISendCommand(CalculationManager::Command::Command1);}
+        xywh {10 216 35 28} shortcut 0x31 labelsize 15
+      }
+      Fl_Button {} {
+        label 2
+        callback {CalcUISendCommand(CalculationManager::Command::Command2);}
+        xywh {50 216 35 28} shortcut 0x32 labelsize 15
+      }
+      Fl_Button {} {
+        label 3
+        callback {CalcUISendCommand(CalculationManager::Command::Command3);}
+        xywh {90 216 35 28} shortcut 0x33 labelsize 15
+      }
+      Fl_Button {} {
+        label 4
+        callback {CalcUISendCommand(CalculationManager::Command::Command4);}
+        xywh {10 184 35 28} shortcut 0x34 labelsize 15
+      }
+      Fl_Button {} {
+        label 5
+        callback {CalcUISendCommand(CalculationManager::Command::Command5);}
+        xywh {50 184 35 28} shortcut 0x35 labelsize 15
+      }
+      Fl_Button {} {
+        label 6
+        callback {CalcUISendCommand(CalculationManager::Command::Command6);}
+        xywh {90 184 35 28} shortcut 0x36 labelsize 15
+      }
+      Fl_Button {} {
+        label 7
+        callback {CalcUISendCommand(CalculationManager::Command::Command7);}
+        xywh {10 152 35 28} shortcut 0x37 labelsize 15
+      }
+      Fl_Button {} {
+        label 8
+        callback {CalcUISendCommand(CalculationManager::Command::Command8);}
+        xywh {50 152 35 28} shortcut 0x38 labelsize 15
+      }
+      Fl_Button {} {
+        label 9
+        callback {CalcUISendCommand(CalculationManager::Command::Command9);}
+        xywh {90 152 35 28} shortcut 0x39 labelsize 15
+      }
+      Fl_Button {} {
+        label {.}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandPNT);}
+        xywh {90 248 35 28} shortcut 0x2e labelsize 15
+      }
+      Fl_Button {} {
+        label {±}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandSIGN);}
+        xywh {130 120 35 28} shortcut 0xffc6 labelsize 12
+      }
+      Fl_Button {} {
+        label MC
+        callback {CalcUISendCommand(CalculationManager::Command::CommandMCLEAR);}
+        xywh {10 88 35 28} shortcut 0x4006c labelsize 12
+      }
+      Fl_Button memory_recall {
+        label MR
+        callback {CalcUISendCommand(CalculationManager::Command::CommandRECALL);}
+        xywh {50 88 35 28} shortcut 0x40072 labelsize 12
+      }
+      Fl_Button {} {
+        label MS
+        callback {CalcUISendCommand(CalculationManager::Command::CommandSTORE);}
+        xywh {90 88 35 28} shortcut 0x4006d labelsize 12
+      }
+      Fl_Button {} {
+        label {M+}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandMPLUS);}
+        xywh {130 88 35 28} shortcut 0x40070 labelsize 12
+      }
+      Fl_Button {} {
+        label {M-}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandMMINUS);}
+        xywh {170 88 35 28} shortcut 0x40071 labelsize 12
+      }
+      Fl_Button {} {
+        label {+}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandADD);}
+        xywh {130 248 35 28} shortcut 0x2b labelsize 12
+      }
+      Fl_Button {} {
+        label {-}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandSUB);}
+        xywh {130 216 35 28} shortcut 0x2d labelsize 12
+      }
+      Fl_Button {} {
+        label {*}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandMUL);}
+        xywh {130 184 35 28} shortcut 0x2a labelsize 12
+      }
+      Fl_Button {} {
+        label {/}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandDIV);}
+        xywh {130 152 35 28} shortcut 0x2f labelsize 12
+      }
+      Fl_Button {} {
+        label {√}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandSQRT);}
+        xywh {170 120 35 28} shortcut 0x40 labelsize 12
+      }
+      Fl_Button {} {
+        label {%}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandPERCENT);}
+        xywh {170 152 35 28} shortcut 0x25 labelsize 12
+      }
+      Fl_Button {} {
+        label {1/x}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandREC);}
+        xywh {170 184 35 28} shortcut 0x72 labelsize 12
+      }
+      Fl_Button {} {
+        label {=}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandEQU);}
+        xywh {170 216 35 60} shortcut 0x3d labelsize 20
+      }
+    }
+    Fl_Box value_display {
+      xywh {10 28 195 50} box DOWN_BOX color 7 labelfont 4 labelsize 20 align 26
+    }
+    Fl_Group binary_view {
+      comment {binary view} open
+      xywh {10 88 385 62} box DOWN_BOX hide
+    } {}
+    Fl_Group scientific_grp {
+      comment {mode-dependent}
+      xywh {10 159 195 189} hide
+    } {
+      Fl_Button {} {
+        label sinh
+        callback {CalcUISendCommand(CalculationManager::Command::CommandSINH);}
+        xywh {50 224 35 28} shortcut 0x40073 labelsize 12
+      }
+      Fl_Button {} {
+        label sin
+        callback {CalcUISendCommand(CalculationManager::Command::CommandSIN);}
+        xywh {90 224 35 28} shortcut 0x73 labelsize 12
+      }
+      Fl_Button {} {
+        label {x^2}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandSQR);}
+        xywh {130 224 35 28} shortcut 0x71 labelsize 12
+      }
+      Fl_Button {} {
+        label Exp
+        callback {CalcUISendCommand(CalculationManager::Command::CommandEXP);}
+        xywh {50 320 35 28} shortcut 0x78 labelsize 12
+      }
+      Fl_Button {} {
+        label Mod
+        callback {CalcUISendCommand(CalculationManager::Command::CommandMOD);}
+        xywh {90 320 35 28} shortcut 0x64 labelsize 12
+      }
+      Fl_Button {} {
+        label log
+        callback {CalcUISendCommand(CalculationManager::Command::CommandLOG);}
+        xywh {130 320 35 28} shortcut 0x6c labelsize 12
+      }
+      Fl_Button {} {
+        label tanh
+        callback {CalcUISendCommand(CalculationManager::Command::CommandTANH);}
+        xywh {50 288 35 28} shortcut 0x40074 labelsize 12
+      }
+      Fl_Button {} {
+        label tan
+        callback {CalcUISendCommand(CalculationManager::Command::CommandTAN);}
+        xywh {90 288 35 28} shortcut 0x74 labelsize 12
+      }
+      Fl_Button {} {
+        label {x^3}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandCUB);}
+        xywh {130 288 35 28} shortcut 0x23 labelsize 12
+      }
+      Fl_Button {} {
+        label cosh
+        callback {CalcUISendCommand(CalculationManager::Command::CommandCOSH);}
+        xywh {50 256 35 28} shortcut 0x4006f labelsize 12
+      }
+      Fl_Button {} {
+        label cos
+        callback {CalcUISendCommand(CalculationManager::Command::CommandCOS);}
+        xywh {90 256 35 28} shortcut 0x6f labelsize 12
+      }
+      Fl_Button {} {
+        label {x^y}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandPWR);}
+        xywh {130 256 35 28} shortcut 0x79 labelsize 12
+      }
+      Fl_Button {} {
+        label {n!}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandFAC);}
+        xywh {170 224 35 28} shortcut 0x21 labelsize 12
+      }
+      Fl_Button {} {
+        label Inv
+        callback {CalcUISendCommand(CalculationManager::Command::CommandINV);}
+        xywh {50 192 35 28} shortcut 0x69 labelsize 12
+      }
+      Fl_Button {} {
+        label ln
+        callback {CalcUISendCommand(CalculationManager::Command::CommandLN);}
+        xywh {90 192 35 28} shortcut 0x6e labelsize 12
+      }
+      Fl_Button {} {
+        label {(}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandOPENP);}
+        xywh {130 192 35 28} shortcut 0x28 labelsize 12
+      }
+      Fl_Button {} {
+        label {)}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandCLOSEP);}
+        xywh {170 192 35 28} shortcut 0x29 labelsize 12
+      }
+      Fl_Button {} {
+        label {10^x}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandPOW10);}
+        xywh {170 320 35 28} shortcut 0x40067 labelsize 12
+      }
+      Fl_Button {} {
+        label {3√x}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandCUBEROOT);}
+        xywh {170 288 35 28} shortcut 0x40062 labelsize 12
+      }
+      Fl_Button {} {
+        label {y√x}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandROOT);}
+        xywh {170 256 35 28} shortcut 0x40079 labelsize 12
+      }
+      Fl_Button {} {
+        label Int
+        callback {CalcUISendCommand(CalculationManager::Command::CommandCHOP);}
+        xywh {10 224 35 28} shortcut 0x3b labelsize 12
+      }
+      Fl_Button {} {
+        label {F-E}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandFE);}
+        xywh {10 320 35 28} shortcut 0x76 labelsize 12
+      }
+      Fl_Button {} {
+        label {π}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandPI);}
+        xywh {10 288 35 28} shortcut 0x70 labelsize 12
+      }
+      Fl_Button {} {
+        label dms
+        callback {CalcUISendCommand(CalculationManager::Command::CommandDMS);}
+        xywh {10 256 35 28} shortcut 0x6d labelsize 12
+      }
+      Fl_Box paren_view_sci {
+        xywh {10 192 35 28} box DOWN_BOX align 64
+      }
+      Fl_Group {} {
+        xywh {10 160 195 28} box DOWN_BOX
+      } {
+        Fl_Round_Button {} {
+          label Deg
+          callback {CalcUISendCommand(CalculationManager::Command::CommandDEG);}
+          xywh {15 167 55 15} down_box ROUND_DOWN_BOX shortcut 0xffc0 value 1 labelsize 12
+        }
+        Fl_Round_Button {} {
+          label Rad
+          callback {CalcUISendCommand(CalculationManager::Command::CommandRAD);}
+          xywh {80 167 55 15} down_box ROUND_DOWN_BOX shortcut 0xffc1 labelsize 12
+        }
+        Fl_Round_Button {} {
+          label Grad
+          callback {CalcUISendCommand(CalculationManager::Command::CommandGRAD);}
+          xywh {145 167 55 15} down_box ROUND_DOWN_BOX shortcut 0xffc2 labelsize 12
+        }
+      }
+    }
+    Fl_Group programmer_grp {
+      comment {mode-dependent} open
+      xywh {10 158 195 189} hide
+    } {
+      Fl_Group {} {
+        xywh {10 159 65 92} box DOWN_BOX
+      } {
+        Fl_Round_Button {} {
+          label Hex
+          callback {CalcUISendCommand(CalculationManager::Command::CommandHex);}
+          xywh {15 165 55 15} type Radio down_box ROUND_DOWN_BOX shortcut 0xffc2 labelsize 12 align 84
+        }
+        Fl_Round_Button {} {
+          label Dec
+          callback {CalcUISendCommand(CalculationManager::Command::CommandDec);}
+          xywh {15 187 55 15} type Radio down_box ROUND_DOWN_BOX shortcut 0xffc3 value 1 labelsize 12 align 84
+        }
+        Fl_Round_Button {} {
+          label Oct
+          callback {CalcUISendCommand(CalculationManager::Command::CommandOct);}
+          xywh {15 209 55 15} type Radio down_box ROUND_DOWN_BOX shortcut 0xffc4 labelsize 12 align 84
+        }
+        Fl_Round_Button {} {
+          label Bin
+          callback {CalcUISendCommand(CalculationManager::Command::CommandBin);}
+          xywh {15 231 55 15} type Radio down_box ROUND_DOWN_BOX shortcut 0xffc5 labelsize 12 align 84
+        }
+      }
+      Fl_Group {} {open
+        xywh {10 255 65 92} box DOWN_BOX
+      } {
+        Fl_Round_Button {} {
+          label {64 bit}
+          callback {CalcUISendCommand(CalculationManager::Command::CommandQword);}
+          xywh {15 262 55 15} type Radio down_box ROUND_DOWN_BOX shortcut 0xffc9 value 1 labelsize 12 align 84
+        }
+        Fl_Round_Button {} {
+          label {32 bit}
+          callback {CalcUISendCommand(CalculationManager::Command::CommandDword);}
+          xywh {15 283 55 15} type Radio down_box ROUND_DOWN_BOX shortcut 0xffbf labelsize 12 align 84
+        }
+        Fl_Round_Button {} {
+          label {16 bit}
+          callback {CalcUISendCommand(CalculationManager::Command::CommandWord);}
+          xywh {15 305 55 15} type Radio down_box ROUND_DOWN_BOX shortcut 0xffc0 labelsize 12 align 84
+        }
+        Fl_Round_Button {} {
+          label {8 bit}
+          callback {CalcUISendCommand(CalculationManager::Command::CommandByte);}
+          xywh {15 327 55 15} type Radio down_box ROUND_DOWN_BOX shortcut 0xffc1 labelsize 12 align 84
+        }
+      }
+      Fl_Button {} {
+        label RoR
+        callback {CalcUISendCommand(CalculationManager::Command::CommandROR);}
+        xywh {80 223 35 28} shortcut 0x6b labelsize 12 align 64
+      }
+      Fl_Button {} {
+        label RoL
+        callback {CalcUISendCommand(CalculationManager::Command::CommandROL);}
+        xywh {120 223 35 28} shortcut 0x6a labelsize 12 align 64
+      }
+      Fl_Button {} {
+        label Or
+        callback {CalcUISendCommand(CalculationManager::Command::CommandOR);}
+        xywh {80 255 35 28} shortcut 0x7c labelsize 12 align 64
+      }
+      Fl_Button {} {
+        label Xor
+        callback {CalcUISendCommand(CalculationManager::Command::CommandXor);}
+        xywh {120 255 35 28} shortcut 0x5e labelsize 12 align 64
+      }
+      Fl_Button {} {
+        label Lsh
+        callback {CalcUISendCommand(CalculationManager::Command::CommandLSHF);}
+        xywh {80 287 35 28} shortcut 0x3c labelsize 12 align 64
+      }
+      Fl_Button {} {
+        label Rsh
+        callback {CalcUISendCommand(CalculationManager::Command::CommandRSHF);}
+        xywh {120 287 35 28} shortcut 0x3e labelsize 12 align 64
+      }
+      Fl_Button {} {
+        label Not
+        callback {CalcUISendCommand(CalculationManager::Command::CommandNot);}
+        xywh {80 319 35 28} shortcut 0x7e labelsize 12 align 64
+      }
+      Fl_Button {} {
+        label And
+        callback {CalcUISendCommand(CalculationManager::Command::CommandAnd);}
+        xywh {120 319 35 28} shortcut 0x26 labelsize 12 align 64
+      }
+      Fl_Button {} {
+        label {(}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandOPENP);}
+        xywh {80 191 35 28} shortcut 0x28 labelsize 12 align 64
+      }
+      Fl_Button {} {
+        label {)}
+        callback {CalcUISendCommand(CalculationManager::Command::CommandCLOSEP);}
+        xywh {120 191 35 28} shortcut 0x29 labelsize 12 align 64
+      }
+      Fl_Button {} {
+        label Mod
+        callback {CalcUISendCommand(CalculationManager::Command::CommandMOD);}
+        xywh {120 159 35 28} shortcut 0x25 labelsize 12 align 64
+      }
+      Fl_Box paren_view_prg {selected
+        xywh {80 159 35 28} box DOWN_BOX align 64
+      }
+      Fl_Button {} {
+        label A
+        callback {CalcUISendCommand(CalculationManager::Command::CommandA);}
+        xywh {170 159 35 28} labelsize 15
+      }
+      Fl_Button {} {
+        label B
+        callback {CalcUISendCommand(CalculationManager::Command::CommandB);}
+        xywh {170 191 35 28} labelsize 15
+      }
+      Fl_Button {} {
+        label C
+        callback {CalcUISendCommand(CalculationManager::Command::CommandC);}
+        xywh {170 223 35 28} labelsize 15
+      }
+      Fl_Button {} {
+        label D
+        callback {CalcUISendCommand(CalculationManager::Command::CommandD);}
+        xywh {170 255 35 28} labelsize 15
+      }
+      Fl_Button {} {
+        label E
+        callback {CalcUISendCommand(CalculationManager::Command::CommandE);}
+        xywh {170 287 35 28} labelsize 15
+      }
+      Fl_Button {} {
+        label F
+        callback {CalcUISendCommand(CalculationManager::Command::CommandF);}
+        xywh {170 319 35 28} labelsize 15
+      }
+    }
+  }
+}

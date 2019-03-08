@@ -17,8 +17,9 @@ LIBS+=-g -pthread
 
 DEFS+= -D_POSIX_C_SOURCE=200809L
 
-_OBJS = win.cpp.o CalcManager/ExpressionCommand.cpp.o CalcManager/CEngine/CalcInput.cpp.o CalcManager/CEngine/CalcUtils.cpp.o CalcManager/CEngine/History.cpp.o CalcManager/CEngine/Number.cpp.o CalcManager/CEngine/Rational.cpp.o CalcManager/CEngine/RationalMath.cpp.o CalcManager/CEngine/calc.cpp.o CalcManager/CEngine/scicomm.cpp.o CalcManager/CEngine/scidisp.cpp.o CalcManager/CEngine/scifunc.cpp.o CalcManager/CEngine/scioper.cpp.o CalcManager/CEngine/sciset.cpp.o CalcManager/Ratpack/conv.cpp.o CalcManager/Ratpack/rat.cpp.o CalcManager/Ratpack/logic.cpp.o CalcManager/Ratpack/support.cpp.o CalcManager/Ratpack/exp.cpp.o CalcManager/Ratpack/fact.cpp.o CalcManager/Ratpack/trans.cpp.o CalcManager/Ratpack/itrans.cpp.o CalcManager/Ratpack/transh.cpp.o CalcManager/Ratpack/itransh.cpp.o CalcManager/Ratpack/num.cpp.o CalcManager/Ratpack/basex.cpp.o CalcManager/EngineStrings.cpp.o main.cpp.o 
+_OBJS = win.cpp.o CalcManager/ExpressionCommand.cpp.o CalcManager/CEngine/CalcInput.cpp.o CalcManager/CEngine/CalcUtils.cpp.o CalcManager/CEngine/History.cpp.o CalcManager/CEngine/Number.cpp.o CalcManager/CEngine/Rational.cpp.o CalcManager/CEngine/RationalMath.cpp.o CalcManager/CEngine/calc.cpp.o CalcManager/CEngine/scicomm.cpp.o CalcManager/CEngine/scidisp.cpp.o CalcManager/CEngine/scifunc.cpp.o CalcManager/CEngine/scioper.cpp.o CalcManager/CEngine/sciset.cpp.o CalcManager/Ratpack/conv.cpp.o CalcManager/Ratpack/rat.cpp.o CalcManager/Ratpack/logic.cpp.o CalcManager/Ratpack/support.cpp.o CalcManager/Ratpack/exp.cpp.o CalcManager/Ratpack/fact.cpp.o CalcManager/Ratpack/trans.cpp.o CalcManager/Ratpack/itrans.cpp.o CalcManager/Ratpack/transh.cpp.o CalcManager/Ratpack/itransh.cpp.o CalcManager/Ratpack/num.cpp.o CalcManager/Ratpack/basex.cpp.o CalcManager/CalculatorHistory.cpp.o CalcManager/CalculatorManager.cpp.o CalcManager/EngineStrings.cpp.o CalcUI/ui_fluid.cpp.o CalcUI/main.cpp.o 
 
+OBJS = $(patsubst %,$(OBJDIR)/%.o,$(_SRCS))
 
 ifdef PROFILE
 DEFS += -pg
@@ -35,6 +36,8 @@ OBJS = $(patsubst %,$(OBJDIR)/%,$(_OBJS))
 
 all: calc
 
+.PHONY: dirtree
+
 calc: $(OBJS)
 	$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS)
 ifdef RELEASE
@@ -43,17 +46,18 @@ ifndef PROFILE
 endif
 endif
 
-$(OBJDIR)/%.cpp.o: $(SRCDIR)/%.cpp | $(OBJDIR)
+$(OBJDIR)/%.cpp.o: $(SRCDIR)/%.cpp | dirtree
 	$(CXX) -c -o $@ $(CXXFLAGS) $< $(DEFS)
 
-$(OBJDIR)/%.c.o: $(SRCDIR)/%.c | $(OBJDIR)
+$(OBJDIR)/%.c.o: $(SRCDIR)/%.c | dirtree
 	$(CC) -c -o $@ $(CFLAGS) $< $(DEFS)
 
-$(DOCDIR):
-	mkdir $(DOCDIR)
-
-$(OBJDIR):
-	mkdir $(OBJDIR)
+dirtree:
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/CalcUI
+	mkdir -p $(OBJDIR)/CalcManager
+	mkdir -p $(OBJDIR)/CalcManager/CEngine
+	mkdir -p $(OBJDIR)/CalcManager/Ratpack
 
 clean:
 	find $(OBJDIR) -name *.o -type f | xargs /bin/rm -f
